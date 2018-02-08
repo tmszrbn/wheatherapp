@@ -1,0 +1,551 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  /*border: 0;*/
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  /*border-collapse: collapse;*/
+  /*border-spacing: 0;*/
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+  /* 1 */
+}
+
+.lack-of-data {
+  font-size: 1rem;
+}
+
+.current-weather {
+  background: #c2e0f0;
+  width: 100vw;
+  height: 100vh;
+  padding: .7rem;
+}
+
+.current-weather-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 90vh;
+  width: 50%;
+  font-size: 1.5rem;
+  padding: 1rem 0;
+}
+
+@media screen and (max-height: 563px) {
+  .current-weather-list {
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .current-weather-list {
+    flex-wrap: nowrap;
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+.current-weather-list__items_container {
+  background: #c2e0f0;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.current-weather-list__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 0.5rem 0;
+  background-color: inherit;
+  transition: background-color .3s ease-in;
+}
+
+.current-weather-list__item:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.current-weather-list__item span {
+  padding: 0 1rem 0 0;
+}
+
+.current-weather-list__city_name {
+  order: -10;
+  font-size: 1.5rem;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.current-weather-list__description {
+  order: -7;
+  justify-content: center;
+  width: 100%;
+}
+
+.current-weather-list__description_code {
+  order: -8;
+  width: 100%;
+}
+
+.current-weather-list__ob_time {
+  font-size: 1rem;
+  order: -9;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.current-weather-list__sunrise {
+  display: flex;
+}
+
+.current-weather-list__sunset {
+  display: flex;
+}
+
+.current-weather-list__wind_dir {
+  order: 1;
+  font-size: 3rem;
+}
+
+.current-weather-list__wind_spd {
+  display: flex;
+}
+
+.current-weather-list__wind_spd svg {
+  transform: scale(0.8);
+}
+
+.weather-48h {
+  background: #d9bf8c;
+  width: 100vw;
+  height: 100vh;
+  padding: .7rem;
+  position: absolute;
+  z-index: 5;
+  right: 0px;
+  transition: width .3s ease-in;
+}
+
+.weather-48h--hidden {
+  padding: .7rem 0;
+  width: 0px;
+}
+
+.weather-48h--half {
+  width: 50%;
+}
+
+.weather-48h__caption {
+  text-align: left;
+  padding: 1rem;
+}
+
+.weather-48h__table {
+  height: 100%;
+  display: block;
+  overflow: auto;
+  white-space: nowrap;
+  border-collapse: collapse;
+}
+
+.weather-48h__row {
+  position: relative;
+}
+
+.weather-48h__row:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.weather-48h__cell {
+  padding: 1rem;
+  position: relative;
+}
+
+.weather-48h__cell:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100%;
+}
+
+/***SNOWING***/
+.snow-up {
+  animation: snowing 3s infinite linear;
+  opacity: 0;
+}
+
+.snow-down {
+  animation: snowing 3s infinite linear;
+  opacity: 0;
+  animation-delay: 1s;
+}
+
+/***LIGHTNINGS***/
+.lightning-small {
+  animation: storming 1.5s infinite;
+}
+
+.lightning-big {
+  animation: storming 2s infinite;
+}
+
+/***RAIN***/
+.rain-up {
+  animation: rainingUp 2s infinite linear;
+  opacity: 0;
+}
+
+.rain-down {
+  animation: rainingDown 2s infinite linear;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+@keyframes snowing {
+  0% {
+    transform: translate(20px, 225px);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(20px, 280px);
+    opacity: 0;
+  }
+}
+
+@keyframes storming {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+}
+
+@keyframes rainingUp {
+  /*+16/+25*/
+  0% {
+    transform: translate(-40px, 150px);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    /*-58/+109/1.88*/
+    transform: translate(-70px, 206.4px);
+    opacity: 0;
+  }
+}
+
+@keyframes rainingDown {
+  /*+16/+25*/
+  0% {
+    transform: translate(-30px, 131px);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    /*-58/+109/1.88*/
+    transform: translate(-60px, 186.4px);
+    opacity: 0;
+  }
+}
+
+/* Base styles for the element that has a tooltip */
+[data-tooltip],
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Base styles for the entire tooltip */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after {
+  position: absolute;
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  -moz-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+/* Show the entire tooltip on hover and focus */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* Base styles for the tooltip's directional arrow */
+.tooltip:before,
+[data-tooltip]:before {
+  z-index: 1001;
+  border: 6px solid transparent;
+  background: transparent;
+  content: "";
+}
+
+/* Base styles for the tooltip's content area */
+.tooltip:after,
+[data-tooltip]:after {
+  z-index: 1000;
+  padding: 8px;
+  width: 160px;
+  background-color: #000;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Directions */
+/* Top (default) */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after,
+.tooltip-top:before,
+.tooltip-top:after {
+  bottom: 100%;
+  left: 50%;
+}
+
+[data-tooltip]:before,
+.tooltip:before,
+.tooltip-top:before {
+  margin-left: -6px;
+  margin-bottom: -12px;
+  border-top-color: #000;
+  border-top-color: rgba(51, 51, 51, 0.9);
+}
+
+/* Horizontally align top/bottom tooltips */
+[data-tooltip]:after,
+.tooltip:after,
+.tooltip-top:after {
+  margin-left: -80px;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after,
+.tooltip-top:hover:before,
+.tooltip-top:hover:after,
+.tooltip-top:focus:before,
+.tooltip-top:focus:after {
+  -webkit-transform: translateY(-12px);
+  -moz-transform: translateY(-12px);
+  transform: translateY(-12px);
+  white-space: normal;
+}
+
+/*FONTS*/
+h2 {
+  font-size: 2.5rem;
+}
+
+/*LAYOUT*/
+.toggler-48h, .toggler-menu {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  font-size: 25px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  margin: 1rem;
+}
+
+.togglers {
+  z-index: 11;
+  position: absolute;
+  right: 0;
+}
+
+/*COLORS*/
+.App {
+  color: #084764;
+}
+
+.current-weather-list__sunrise svg, .current-weather-list__sunset svg, .current-weather-list__wind_spd svg {
+  fill: #084764;
+  stroke: #084764;
+}
+
+/*MENU*/
+.modal {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  padding: .5rem 1rem;
+  opacity: 1;
+  transition: all 1s linear;
+}
+
+.modal__button {
+  border: 3px solid #c2e0f0;
+  border-radius: 25px;
+  margin: 10px;
+  background: white;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.modal__close {
+  cursor: pointer;
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+}
+
+.modal__content {
+  flex-wrap: wrap;
+  background: white;
+  padding: 1rem;
+  position: absolute;
+  width: 20rem;
+  max-width: 100%;
+  top: calc(50% - 5rem);
+  left: calc(50% - 10rem);
+  transition: all .3s ease-in;
+}
+
+.modal__content--hidden {
+  left: -25rem;
+}
+
+.modal--hidden {
+  opacity: 0;
+  z-index: -1;
+}
+
+.menu-toggler {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: yellow;
+  border-radius: 50%;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 11;
+  transition: transform .2s ease-in;
+}
+
+.menu-toggler:hover {
+  transform: scale(1.2);
+}
+
+.menu-toggler .fa-bars {
+  font-size: 26px;
+}

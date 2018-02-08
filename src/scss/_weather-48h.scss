@@ -1,0 +1,51 @@
+// main: app.scss
+
+.weather-48h{
+  background: hsl(40, 50%, 70%);
+  width: 100vw;
+  height: 100vh;
+  padding: .7rem;
+  position: absolute;
+  z-index: 5;
+  right: 0px;
+  transition: width .3s ease-in;
+
+  &--hidden {
+    padding: .7rem 0;
+    width: 0px;
+  }
+
+  &--half {
+    width: 50%;
+  }
+
+  &__caption {
+    text-align: left;
+    padding: 1rem;
+  }
+
+  &__table {
+    height: 100%;
+    display: block;
+    overflow: auto;
+    white-space: nowrap;
+    border-collapse: collapse;
+  }
+
+  &__row {
+    position: relative;
+
+    &:hover {
+      background: hsla(0, 100%, 100%, .2);
+    }
+  }
+  &__cell {
+    padding: 1rem;
+    position: relative;
+
+    &:hover {
+      background: hsla(0, 100%, 100%, .2);
+
+    }
+  }
+}

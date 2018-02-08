@@ -1,0 +1,86 @@
+// main: app.scss
+/***SNOWING***/
+.snow {
+  &-up {
+	animation: snowing 3s infinite linear;
+	opacity: 0;
+  }
+  &-down {
+    animation: snowing 3s infinite linear;
+    opacity: 0;
+    animation-delay: 1s;
+  }
+}
+
+/***LIGHTNINGS***/
+.lightning {
+  &-small {
+  	animation: storming 1.5s infinite;
+  }
+  &-big {
+  	animation: storming 2s infinite;
+  }
+}
+/***RAIN***/
+.rain {
+  &-up {
+  	animation: rainingUp 2s infinite linear;
+  	opacity: 0;
+  }
+  &-down {
+  	animation: rainingDown 2s infinite linear;
+    animation-delay: 1.2s;
+  	opacity: 0;
+  }
+}
+
+@keyframes snowing {
+	0% {
+		transform: translate(20px, 225px);
+		opacity: 1;
+	}
+	80%{
+		opacity: 1;
+	}
+	100% {
+		transform: translate(20px, 280px);
+		opacity: 0;
+	}
+}
+
+@keyframes storming {
+  0% {opacity: 0}
+  10% {opacity: 1}
+  80% {opacity: 0}
+}
+
+@keyframes rainingUp {
+	/*+16/+25*/
+  0% {
+		transform: translate(-40px, 150px);
+		opacity: 1;
+	}
+	80% {
+		opacity: 1;
+	}
+  100% {
+		/*-58/+109/1.88*/
+		transform: translate(-70px, 206.4px);
+		opacity: 0;
+	}
+}
+@keyframes rainingDown {
+	/*+16/+25*/
+  0% {
+		transform: translate(-30px, 131px);
+		opacity: 1;
+	}
+	80% {
+		opacity: 1;
+	}
+  100% {
+		/*-58/+109/1.88*/
+		transform: translate(-60px, 186.4px);
+		opacity: 0;
+	}
+}

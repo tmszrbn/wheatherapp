@@ -1,0 +1,125 @@
+// main: app.scss
+
+
+$curr-weather-bg-color: hsl(200, 60%, 85%);
+
+.lack-of-data {
+	font-size: 1rem;
+}
+
+.current-weather {
+	background: $curr-weather-bg-color;
+	width: 100vw;
+	height: 100vh;
+	padding: .7rem;
+	&-list {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: center;
+		height: 90vh;
+		width: 50%;
+		font-size: 1.5rem;
+		padding: 1rem 0;
+
+		@media screen and (max-height: 563px) {
+			flex-wrap: nowrap;
+			width: 100%;
+		}
+		@media screen and (max-width: 560px) {
+			flex-wrap: nowrap;
+			width: 100%;
+			font-size: 14px;
+		}
+
+		&__items_container {
+			background: $curr-weather-bg-color;
+			display: flex;
+			width: 100%;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			height: 100%;
+		}
+
+		&__item {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 50%;
+			padding: 0.5rem 0;
+			background-color: inherit;
+			transition: background-color .3s ease-in;
+
+			&:hover {
+				background-color: hsla(0, 100%, 100%, .4);
+			}
+
+			& span {
+				padding: 0 1rem 0 0;
+			}
+		}
+
+		&__app_temp {
+		}
+
+		&__city_name {
+			order: -10;
+			font-size: 1.5rem;
+			width: 100%;
+			justify-content: flex-start;
+		}
+
+		&__clouds {
+		}
+
+		&__description {
+			order: -7;
+			justify-content: center;
+			width: 100%;
+		}
+
+		&__description_code {
+			order: -8;
+			width: 100%;
+		}
+
+		&__ob_time {
+			font-size: 1rem;
+			order: -9;
+			width: 100%;
+			justify-content: flex-start;
+		}
+
+		&__sunrise {
+			display: flex;
+		}
+
+		&__sunset {
+			display: flex;
+		}
+
+		&__temp {
+		}
+
+		&__wind_dir{
+			order:1;
+			font-size: 3rem;
+		}
+
+		&__wind_spd {
+			display: flex;
+			& svg {
+				transform: scale(.8)
+			}
+		}
+
+
+
+
+		&__snow, &__precip {
+
+		}
+
+
+	}
+}

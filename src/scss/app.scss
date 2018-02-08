@@ -1,0 +1,130 @@
+//
+
+@import 'reset';
+@import 'variables';
+@import 'visuallyhidden';
+@import 'current-weather';
+@import 'weather-48h';
+@import 'weather';
+@import 'weather-icons';
+@import 'tooltips';
+
+/*FONTS*/
+h2 {
+	font-size: 2.5rem;
+}
+
+/*LAYOUT*/
+
+.toggler-48h, .toggler-menu {
+	cursor: pointer;
+	display: inline-flex;
+	justify-content: center;
+	text-align: center;
+	position: relative;
+	font-size: 25px;
+	height: 50px;
+	width: 50px;
+	border: none;
+	border-radius: 50%;
+	background: white;
+	margin: 1rem;
+}
+
+.togglers {
+	z-index: 11;
+	position: absolute;
+	right: 0;
+}
+
+
+/*COLORS*/
+.App {
+	color: $text-color;
+}
+
+.current-weather-list__sunrise, .current-weather-list__sunset, .current-weather-list__wind_spd {
+	svg {
+		fill: $text-color;
+		stroke: $text-color;
+	}
+}
+
+/*MENU*/
+.modal {
+	position: absolute;
+	// top: 0; right: 0; bottom: 0; left: 0;
+	background: hsla(0,0,0,.5);
+	z-index: 10;
+	width: 100vw;
+	height: 100vh;
+	padding: .5rem 1rem;
+	opacity: 1;
+	transition: all 1s linear;
+
+
+	&__button {
+		border: 3px solid hsl(200, 60%, 85%);
+		border-radius: 25px;
+		margin: 10px;
+		background: white;
+		cursor: pointer;
+		font-size: 1rem;
+		padding: 10px;
+	}
+
+	&__close {
+		cursor: pointer;
+		font-size: 1rem;
+		position: absolute;
+		top: 0;
+		right: 0;
+		border: none;
+	}
+
+	&__content {
+		// display: flex;
+		// justify-content: space-around;
+		flex-wrap: wrap;
+		background: white;
+		padding: 1rem;
+		position: absolute;
+		width: 20rem;
+		max-width: 100%;
+		top: calc(50% - 5rem);
+		left: calc(50% - 10rem);
+		transition: all .3s ease-in;
+
+
+		&--hidden {
+			left: -25rem;
+		}
+	}
+	&--hidden {
+		opacity: 0;
+		z-index: -1;
+	}
+}
+
+.menu-toggler {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	background: yellow;
+	border-radius: 50%;
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+	z-index: 11;
+	transition: transform .2s ease-in;
+
+	&:hover {
+		transform: scale(1.2);
+	}
+	& .fa-bars {
+		font-size: 26px;
+	}
+}
