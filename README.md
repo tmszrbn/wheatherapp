@@ -1,3 +1,21 @@
+To use this repository you have to obtain api key for Weatherbit API. Its free version is sufficient, https://www.weatherbit.io/ .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
